@@ -11,4 +11,8 @@
     <Folder Include="Classes\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FDBL.Common\FDBL.Common.csproj" />
+  </ItemGroup>
+
 </Project>

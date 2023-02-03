@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FDBL.Admin.UI", "FDBL.Admin.UI\FDBL.Admin.UI.csproj", "{8DAA976D-0F0A-45E2-8C3B-CAF2F5BE5274}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FDBL.Common", "FDBL.Common\FDBL.Common.csproj", "{BA9FCA93-0F1C-4C76-878B-91BA3F369CF8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{8DAA976D-0F0A-45E2-8C3B-CAF2F5BE5274}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DAA976D-0F0A-45E2-8C3B-CAF2F5BE5274}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DAA976D-0F0A-45E2-8C3B-CAF2F5BE5274}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA9FCA93-0F1C-4C76-878B-91BA3F369CF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA9FCA93-0F1C-4C76-878B-91BA3F369CF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA9FCA93-0F1C-4C76-878B-91BA3F369CF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA9FCA93-0F1C-4C76-878B-91BA3F369CF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
