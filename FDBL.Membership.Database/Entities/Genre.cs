@@ -13,5 +13,5 @@ public class Genre : IEntity
     public string? Name { get; set; }
 
     //one to many - one genre can have many films
-    public virtual ICollection<Film>? Films { get; set; }
+    public virtual ICollection<Film>? Films { get; set; } 
 }

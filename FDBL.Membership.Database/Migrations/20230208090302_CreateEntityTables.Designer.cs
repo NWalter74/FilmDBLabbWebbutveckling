@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FDBL.Membership.Database.Migrations
 {
     [DbContext(typeof(FDBLContext))]
-    [Migration("20230207102713_CreateEntityTables")]
+    [Migration("20230208090302_CreateEntityTables")]
     partial class CreateEntityTables
     {
         /// <inheritdoc />

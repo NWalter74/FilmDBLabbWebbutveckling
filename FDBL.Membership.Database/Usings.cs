@@ -1,12 +1,19 @@
-﻿global using AutoMapper;
-global using Microsoft.EntityFrameworkCore;
-global using System;
-global using System.Collections.Generic;
-global using System.Linq;
-global using System.Text;
-global using System.Threading.Tasks;
+﻿global using Microsoft.EntityFrameworkCore;
 global using System.ComponentModel.DataAnnotations;
 global using FDBL.Membership.Database.Entities;
-global using Microsoft.EntityFrameworkCore;
-global using System.Reflection.Emit;
+global using System.Linq.Expressions;
+global using AutoMapper;
+global using FDBL.Membership.Database.Contexts;
+global using AutoMapper;
+global using FDBL.Common.DTOs;
+global using FDBL.Membership.Database.Entities;
+global using FDBL.Membership.Database.Services;
+global using Microsoft.EntityFrameworkCore.Metadata.Internal;
+global using static System.Collections.Specialized.BitVector32;
+
+
+
+
+
+
 

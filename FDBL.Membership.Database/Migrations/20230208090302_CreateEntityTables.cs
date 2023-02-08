@@ -47,10 +47,10 @@ namespace FDBL.Membership.Database.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Released = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DirectorId = table.Column<int>(type: "int", nullable: false),
                     Free = table.Column<bool>(type: "bit", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
-                    FilmUrl = table.Column<string>(type: "nvarchar(1024)", maxLength: 1024, nullable: true)
+                    FilmUrl = table.Column<string>(type: "nvarchar(1024)", maxLength: 1024, nullable: true),
+                    DirectorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
