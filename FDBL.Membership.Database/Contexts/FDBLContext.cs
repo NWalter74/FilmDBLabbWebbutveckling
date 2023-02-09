@@ -18,7 +18,6 @@ public class FDBLContext : DbContext
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder.Entity<FilmGenre>().HasKey(ci => new { ci.FilmId, ci.GenreId });
-
         builder.Entity<SimilarFilm>().HasKey(ci => new { ci.FilmId, ci.SimilarFilmId });
         
         base.OnModelCreating(builder);
@@ -32,7 +31,7 @@ public class FDBLContext : DbContext
                 // with the ICollection<SimilarFilms>
                 .HasMany(d => d.SimilarFilms)
                 .WithOne(p => p.Film)
-                .HasForeignKey(d => d.FilmId)
+                .HasForeignKey(d => d.FilmId)       //FilmId from tabel SimilarFilms
                 // To prevent cycles or multiple cascade paths.
                 // Neded when seeding similar films data.
                 .OnDelete(DeleteBehavior.ClientSetNull);

@@ -1,26 +1,24 @@
-﻿namespace FDBL.Membership.API.Controllers;
+﻿using FDBL.Membership.Database.Entities;
+
+namespace FDBL.Membership.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class FilmsController : ControllerBase
+public class GenresController : ControllerBase
 {
     private readonly IDbService _db;
 
-    public FilmsController(IDbService db) => _db = db;
+    public GenresController(IDbService db) => _db = db;
 
-    // GET: api/<FilmsController>
+    // GET: api/<GenresController>
     [HttpGet]
-    public async Task<IResult> Get(bool freeOnly)
+    public async Task<IResult> Get()
     {
         try
         {
-            _db.Include<Director>();
+            List<GenreDTO>? genres = await _db.GetAsync<Genre, GenreDTO>();
 
-            List<FilmDTO>? films = freeOnly ?
-                await _db.GetAsync<Film, FilmDTO>(c => c.Free.Equals(freeOnly)) :
-                await _db.GetAsync<Film, FilmDTO>();
-
-            return Results.Ok(films);
+            return Results.Ok(genres);
         }
         catch (Exception)
         {
@@ -28,19 +26,16 @@ public class FilmsController : ControllerBase
         return Results.NotFound();
     }
 
-    // GET api/<FilmsController>/5
+    // GET api/<GenresController>/5
     [HttpGet("{id}")]
     public async Task<IResult> Get(int id)
     {
         try
         {
-            _db.Include<Director>();
-            _db.Include<Genre>();
+            var genre =
+                await _db.SingleAsync<Genre, GenreDTO>(c => c.Id.Equals(id));
 
-            var film =
-                await _db.SingleAsync<Film, FilmDTO>(c => c.Id.Equals(id));
-
-            return Results.Ok(film);
+            return Results.Ok(genre);
 
         }
         catch (Exception)
@@ -49,15 +44,15 @@ public class FilmsController : ControllerBase
         return Results.NotFound();
     }
 
-    // POST api/<FilmsController>
+    // POST api/<GenresController>
     [HttpPost]
-    public async Task<IResult> Post([FromBody] FilmCreateDTO dto)
+    public async Task<IResult> Post([FromBody] GenreDTO dto)
     {
         try
         {
             if (dto == null) return Results.BadRequest();
 
-            var film = await _db.AddAsync<Film, FilmCreateDTO>(dto);
+            var genre = await _db.AddAsync<Genre, GenreDTO>(dto);
 
             var success = await _db.SaveChangesAsync();
 
@@ -66,7 +61,7 @@ public class FilmsController : ControllerBase
                 return Results.BadRequest();
             }
 
-            return Results.Created(_db.GetURI<Film>(film), film);
+            return Results.Created(_db.GetURI<Genre>(genre), genre);
         }
         catch
         {
@@ -75,9 +70,9 @@ public class FilmsController : ControllerBase
         return Results.BadRequest();
     }
 
-    // PUT api/<FilmsController>/5
+    // PUT api/<GenresController>/5
     [HttpPut("{id}")]
-    public async Task<IResult> Put(int id, [FromBody] FilmEditDTO dto)
+    public async Task<IResult> Put(int id, [FromBody] GenreDTO dto)
     {
         try
         {
@@ -90,18 +85,12 @@ public class FilmsController : ControllerBase
                 return Results.BadRequest("Differing ids");
             }
 
-            var exists = await _db.AnyAsync<Director>(i => i.Id.Equals(dto.DirectorId));
-            if (!exists)
-            {
-                return Results.NotFound("Could not find related entity");
-            }
-
-            exists = await _db.AnyAsync<Film>(c => c.Id.Equals(id));
+            var exists = await _db.AnyAsync<Genre>(c => c.Id.Equals(id));
             if (!exists)
             {
                 return Results.NotFound("Could not find entity");
             }
-            _db.Update<Film, FilmEditDTO>(dto.Id, dto);
+            _db.Update<Genre, GenreDTO>(dto.Id, dto);
 
             var success = await _db.SaveChangesAsync();
 
@@ -120,15 +109,13 @@ public class FilmsController : ControllerBase
     }
 
 
-    // DELETE api/<FilmsController>/5
+    // DELETE api/<GenresController>/5
     [HttpDelete("{id}")]
     public async Task<IResult> Delete(int id)
     {
         try
         {
-            //Inside the try block, call the DeleteAsync method on the _db service instance and specify the 
-            //Course entity as its type.Save there result in a variable named success.
-            var success = await _db.DeleteAsync<Film>(id);
+            var success = await _db.DeleteAsync<Genre>(id);
 
             if (!success)
             {

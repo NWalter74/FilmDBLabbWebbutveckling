@@ -6,11 +6,11 @@ namespace FDBL.Membership.Database.Entities;
 
 public class Film : IEntity
 {
-    //public Film()
-    //{
-    //    SimilarFilms = new HashSet<SimilarFilm>();
-    //    Genres = new HashSet<Genre>();
-    //}
+    public Film()
+    {
+        SimilarFilms = new HashSet<SimilarFilm>();
+        Genres = new HashSet<Genre>();
+    }
 
     public int Id { get; set; }
     [MaxLength(50)]
@@ -23,9 +23,9 @@ public class Film : IEntity
     public string? FilmUrl { get; set; }
 
     public int DirectorId { get; set; }     
-
     //one director can have many films
-    public virtual Director Director { get; set; } = null!;
+    public virtual Director? Director { get; set; }
+
     //one to many - one film can have many similar films and many genres
     public virtual ICollection<Genre>? Genres { get; set; }      
     public virtual ICollection<SimilarFilm>? SimilarFilms { get; set; }  
