@@ -65,8 +65,8 @@ namespace FDBL.Membership.Database.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<int>("DirectorId")
                         .HasColumnType("int");
@@ -77,6 +77,18 @@ namespace FDBL.Membership.Database.Migrations
 
                     b.Property<bool>("Free")
                         .HasColumnType("bit");
+
+                    b.Property<string>("ImageLargeUrl")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("ImageSimilarUrl")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("ImageUrl")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<DateTime>("Released")
                         .HasColumnType("datetime2");
@@ -95,50 +107,65 @@ namespace FDBL.Membership.Database.Migrations
                         new
                         {
                             Id = 11,
-                            Description = "När tre olika djur smittas av en farlig patogen...",
+                            Description = "När tre olika djur smittas av en farlig patogen som gör dem till jättemonster slår sig en primatolog ihop med en genetiker för att hindra dem från att ödelägga Chicago.",
                             DirectorId = 1001,
                             FilmUrl = "https://youtu.be/coOKvrsmQiI",
                             Free = false,
+                            ImageLargeUrl = "/images/Rampage_large.png",
+                            ImageSimilarUrl = "/images/Rampage_sim.png",
+                            ImageUrl = "/images/Rampage.png",
                             Released = new DateTime(2018, 4, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Title = "Rampage"
                         },
                         new
                         {
                             Id = 12,
-                            Description = "När den okända San Andreas förkastningen slutligen ger vika...",
+                            Description = "När den okända San Andreasförkastningen slutligen ger vika, vilket utlöser en jordbävning av magnitud 9 i Kalifornien, tar sig en helikopterräddare och hans förfrämligade fru från Los Angeles till San Francisco för att rädda sin enda dotter.",
                             DirectorId = 1001,
                             FilmUrl = "https://youtu.be/23VflsU3kZE",
                             Free = false,
+                            ImageLargeUrl = "/images/SanAndreas_large.png",
+                            ImageSimilarUrl = "/images/SanAndreas_sim.png",
+                            ImageUrl = "/images/SanAndreas.png",
                             Released = new DateTime(2015, 5, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Title = "San Andreas"
                         },
                         new
                         {
                             Id = 13,
-                            Description = "En brokig skara forskare, soldater och äventyrare samlas för att utforska...",
+                            Description = "En brokig skara forskare, soldater och äventyrare samlas för att utforska en vacker men förrädisk ö i Stilla havet, omedvetna om att de inkräktar på den mytiska Kongs territorium.",
                             DirectorId = 1002,
                             FilmUrl = "https://youtu.be/dBLdPIp-BuY",
                             Free = false,
+                            ImageLargeUrl = "/images/KonSkullIsland_large.png",
+                            ImageSimilarUrl = "/images/KonSkullIsland_sim.png",
+                            ImageUrl = "/images/KonSkullIsland.png",
                             Released = new DateTime(2017, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Title = "Kong Skull Island"
                         },
                         new
                         {
                             Id = 14,
-                            Description = "Den unge Sean Anderson får ett kodat nödanrop från...",
+                            Description = "Den unge Sean Anderson får ett kodat nödanrop från en otrolig plats: en outforskad mystisk ö. Så inleds äventyret i uppföljaren till succén ”Journey to the Center of the Earth”.",
                             DirectorId = 1001,
                             FilmUrl = "https://youtu.be/1Q2LVXlHKS8",
                             Free = false,
+                            ImageLargeUrl = "/images/Journey2_large.png",
+                            ImageSimilarUrl = "/images/Journey2_sim.png",
+                            ImageUrl = "/images/Journey2.png",
                             Released = new DateTime(2012, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Title = "Journey2"
                         },
                         new
                         {
                             Id = 15,
-                            Description = "Maltazard har fångat Arthur i Minimojernas rike och har påbörjat...",
+                            Description = "Maltazard har fångat Arthur i Minimojernas rike och har påbörjat kampen för att ta över människornas värld.",
                             DirectorId = 1003,
                             FilmUrl = "https://youtu.be/QWHsbDbLCJM",
                             Free = false,
+                            ImageLargeUrl = "/images/Arthur_large.png",
+                            ImageSimilarUrl = "/images/Arthur_sim.png",
+                            ImageUrl = "/images/Arthur.png",
                             Released = new DateTime(2011, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Title = "Arthur The War Of Two Worlds"
                         });

@@ -73,20 +73,32 @@ public class Program
             Entity.*/
             var config = new MapperConfiguration(cfg =>
             {
+                //Genre
                 cfg.CreateMap<Genre, GenreDTO>().ReverseMap();
 
+                //Director
                 cfg.CreateMap<Director, DirectorDTO>().ReverseMap()
                 .ForMember(dest => dest.Films, src => src.Ignore());
 
+                //Film
                 cfg.CreateMap<Film, FilmDTO>().ReverseMap()
                 .ForMember(dest => dest.Director, src => src.Ignore());
 
+                cfg.CreateMap<FilmCreateDTO, Film>()
+                .ForMember(dest => dest.Director, src => src.Ignore())
+                .ForMember(dest => dest.Genres, src => src.Ignore())
+                .ForMember(dest => dest.SimilarFilms, src => src.Ignore());
+
+                cfg.CreateMap<FilmEditDTO, Film>()
+                .ForMember(dest => dest.Director, src => src.Ignore())
+                .ForMember(dest => dest.Genres, src => src.Ignore())
+                .ForMember(dest => dest.SimilarFilms, src => src.Ignore());
+
+                //SimilarFilms
                 cfg.CreateMap<SimilarFilm, SimilarFilmDTO>().ReverseMap();
 
+                //FilmGenre
                 cfg.CreateMap<FilmGenre, FilmGenreDTO>().ReverseMap();
-
-                cfg.CreateMap<FilmCreateDTO, Film>().ReverseMap();
-                cfg.CreateMap<FilmEditDTO, Film>().ReverseMap();
             });
 
             var mapper = config.CreateMapper();
@@ -94,3 +106,5 @@ public class Program
         }
     }
 }
+
+

@@ -1,0 +1,32 @@
+﻿@*Here you add the overarching portal, which loads the individual entity portal components
+using the @page directive’s dynamic route parameter to determine which underlying component to 
+load. To store the route parameter, the property must be decorated with the [Parameter] attribute.
+*@
+
+@page "/{Route}"
+
+<h1>@Route</h1>
+
+@*checking that the Route value equals the
+Routes.Courses value below the <h3> element (in Razor if blocks has curly braces.)
+*@    
+
+@if (Route.Equals(Routes.Films))
+{
+    <FilmsPortal />
+}
+
+@if (Route.Equals(Routes.Genres))
+{
+    <GenresPortal />
+}
+
+@if (Route.Equals(Routes.Directors))
+{
+    <DirectorsPortal />
+}
+
+@code {
+    //This property holds the dynamic route value you use to determine which component to load.
+    [Parameter] public string Route { get; set; } = "";
+}

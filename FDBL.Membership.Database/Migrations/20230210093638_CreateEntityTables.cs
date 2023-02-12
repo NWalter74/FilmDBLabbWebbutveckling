@@ -48,8 +48,11 @@ namespace FDBL.Membership.Database.Migrations
                     Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Released = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Free = table.Column<bool>(type: "bit", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     FilmUrl = table.Column<string>(type: "nvarchar(1024)", maxLength: 1024, nullable: true),
+                    ImageUrl = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    ImageLargeUrl = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    ImageSimilarUrl = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     DirectorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -137,14 +140,14 @@ namespace FDBL.Membership.Database.Migrations
 
             migrationBuilder.InsertData(
                 table: "Films",
-                columns: new[] { "Id", "Description", "DirectorId", "FilmUrl", "Free", "Released", "Title" },
+                columns: new[] { "Id", "Description", "DirectorId", "FilmUrl", "Free", "ImageLargeUrl", "ImageSimilarUrl", "ImageUrl", "Released", "Title" },
                 values: new object[,]
                 {
-                    { 11, "När tre olika djur smittas av en farlig patogen...", 1001, "https://youtu.be/coOKvrsmQiI", false, new DateTime(2018, 4, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), "Rampage" },
-                    { 12, "När den okända San Andreas förkastningen slutligen ger vika...", 1001, "https://youtu.be/23VflsU3kZE", false, new DateTime(2015, 5, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), "San Andreas" },
-                    { 13, "En brokig skara forskare, soldater och äventyrare samlas för att utforska...", 1002, "https://youtu.be/dBLdPIp-BuY", false, new DateTime(2017, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Kong Skull Island" },
-                    { 14, "Den unge Sean Anderson får ett kodat nödanrop från...", 1001, "https://youtu.be/1Q2LVXlHKS8", false, new DateTime(2012, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Journey2" },
-                    { 15, "Maltazard har fångat Arthur i Minimojernas rike och har påbörjat...", 1003, "https://youtu.be/QWHsbDbLCJM", false, new DateTime(2011, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Arthur The War Of Two Worlds" }
+                    { 11, "När tre olika djur smittas av en farlig patogen som gör dem till jättemonster slår sig en primatolog ihop med en genetiker för att hindra dem från att ödelägga Chicago.", 1001, "https://youtu.be/coOKvrsmQiI", false, "/images/Rampage_large.png", "/images/Rampage_sim.png", "/images/Rampage.png", new DateTime(2018, 4, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), "Rampage" },
+                    { 12, "När den okända San Andreasförkastningen slutligen ger vika, vilket utlöser en jordbävning av magnitud 9 i Kalifornien, tar sig en helikopterräddare och hans förfrämligade fru från Los Angeles till San Francisco för att rädda sin enda dotter.", 1001, "https://youtu.be/23VflsU3kZE", false, "/images/SanAndreas_large.png", "/images/SanAndreas_sim.png", "/images/SanAndreas.png", new DateTime(2015, 5, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), "San Andreas" },
+                    { 13, "En brokig skara forskare, soldater och äventyrare samlas för att utforska en vacker men förrädisk ö i Stilla havet, omedvetna om att de inkräktar på den mytiska Kongs territorium.", 1002, "https://youtu.be/dBLdPIp-BuY", false, "/images/KonSkullIsland_large.png", "/images/KonSkullIsland_sim.png", "/images/KonSkullIsland.png", new DateTime(2017, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Kong Skull Island" },
+                    { 14, "Den unge Sean Anderson får ett kodat nödanrop från en otrolig plats: en outforskad mystisk ö. Så inleds äventyret i uppföljaren till succén ”Journey to the Center of the Earth”.", 1001, "https://youtu.be/1Q2LVXlHKS8", false, "/images/Journey2_large.png", "/images/Journey2_sim.png", "/images/Journey2.png", new DateTime(2012, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Journey2" },
+                    { 15, "Maltazard har fångat Arthur i Minimojernas rike och har påbörjat kampen för att ta över människornas värld.", 1003, "https://youtu.be/QWHsbDbLCJM", false, "/images/Arthur_large.png", "/images/Arthur_sim.png", "/images/Arthur.png", new DateTime(2011, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Arthur The War Of Two Worlds" }
                 });
 
             migrationBuilder.InsertData(

@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FDBL.Admin.UI", "FDBL.Admin.UI\FDBL.Admin.UI.csproj", "{8DAA976D-0F0A-45E2-8C3B-CAF2F5BE5274}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FDBL.Admin.UI", "FDBL.Admin.UI\FDBL.Admin.UI.csproj", "{8DAA976D-0F0A-45E2-8C3B-CAF2F5BE5274}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FDBL.Common", "FDBL.Common\FDBL.Common.csproj", "{BA9FCA93-0F1C-4C76-878B-91BA3F369CF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FDBL.Common", "FDBL.Common\FDBL.Common.csproj", "{BA9FCA93-0F1C-4C76-878B-91BA3F369CF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FDBL.Membership.Database", "FDBL.Membership.Database\FDBL.Membership.Database.csproj", "{892EC224-791D-49B0-B0D9-0888801222BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FDBL.Membership.Database", "FDBL.Membership.Database\FDBL.Membership.Database.csproj", "{892EC224-791D-49B0-B0D9-0888801222BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FDBL.Membership.API", "FDBL.Membership.API\FDBL.Membership.API.csproj", "{748E9F97-544B-415A-980C-3C7AEC01A51E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FDBL.Membership.API", "FDBL.Membership.API\FDBL.Membership.API.csproj", "{748E9F97-544B-415A-980C-3C7AEC01A51E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

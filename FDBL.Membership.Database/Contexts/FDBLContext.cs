@@ -58,7 +58,7 @@ public class FDBLContext : DbContext
             new Director { Id = 1002, Name = "Jordan Vogt-Roberts" },
             new Director { Id = 1003, Name = "Brad Peyton" }
         };
-
+        //TODO: Ändra description som i VODContextExtensions och länkar till images
         var films = new List<Film>
         {
             new Film
@@ -68,8 +68,11 @@ public class FDBLContext : DbContext
                 Released = new DateTime(2018, 04, 13),
                 DirectorId = 1001,
                 Free = false,
-                Description = "När tre olika djur smittas av en farlig patogen...",
-                FilmUrl = "https://youtu.be/coOKvrsmQiI"
+                Description = "När tre olika djur smittas av en farlig patogen som gör dem till jättemonster slår sig en primatolog ihop med en genetiker för att hindra dem från att ödelägga Chicago.",
+                FilmUrl = "https://youtu.be/coOKvrsmQiI",
+                ImageUrl = "/images/Rampage.png",
+                ImageLargeUrl = "/images/Rampage_large.png",
+                ImageSimilarUrl = "/images/Rampage_sim.png"
             },
             new Film
             {
@@ -78,8 +81,12 @@ public class FDBLContext : DbContext
                 Released = new DateTime(2015, 05, 29),
                 DirectorId = 1001,
                 Free = false,
-                Description = "När den okända San Andreas förkastningen slutligen ger vika...",
-                FilmUrl = "https://youtu.be/23VflsU3kZE"
+                Description = "När den okända San Andreasförkastningen slutligen ger vika, vilket utlöser en jordbävning av magnitud 9 i Kalifornien, tar sig en helikopterräddare och hans förfrämligade fru från Los Angeles till San Francisco för att rädda sin enda dotter.",
+                FilmUrl = "https://youtu.be/23VflsU3kZE",
+                ImageUrl = "/images/SanAndreas.png",
+                ImageLargeUrl = "/images/SanAndreas_large.png",
+                ImageSimilarUrl = "/images/SanAndreas_sim.png"
+
             },
             new Film
             {
@@ -88,9 +95,11 @@ public class FDBLContext : DbContext
                 Released = new DateTime(2017, 03, 10),
                 DirectorId = 1002,
                 Free = false,
-                Description = "En brokig skara forskare, soldater och äventyrare samlas för att utforska...",
-                FilmUrl = "https://youtu.be/dBLdPIp-BuY"
-
+                Description = "En brokig skara forskare, soldater och äventyrare samlas för att utforska en vacker men förrädisk ö i Stilla havet, omedvetna om att de inkräktar på den mytiska Kongs territorium.",
+                FilmUrl = "https://youtu.be/dBLdPIp-BuY",
+                ImageUrl = "/images/KonSkullIsland.png",
+                ImageLargeUrl = "/images/KonSkullIsland_large.png",
+                ImageSimilarUrl = "/images/KonSkullIsland_sim.png"
             },
             new Film
             {
@@ -99,9 +108,11 @@ public class FDBLContext : DbContext
                 Released = new DateTime(2012, 03, 02),
                 DirectorId = 1001,
                 Free = false,
-                Description = "Den unge Sean Anderson får ett kodat nödanrop från...",
-                FilmUrl = "https://youtu.be/1Q2LVXlHKS8"
-
+                Description = "Den unge Sean Anderson får ett kodat nödanrop från en otrolig plats: en outforskad mystisk ö. Så inleds äventyret i uppföljaren till succén ”Journey to the Center of the Earth”.",
+                FilmUrl = "https://youtu.be/1Q2LVXlHKS8",
+                ImageUrl = "/images/Journey2.png",
+                ImageLargeUrl = "/images/Journey2_large.png",
+                ImageSimilarUrl = "/images/Journey2_sim.png"
             },
             new Film
             {
@@ -110,8 +121,11 @@ public class FDBLContext : DbContext
                 Released = new DateTime(2011, 04, 20),
                 DirectorId = 1003,
                 Free = false,
-                Description = "Maltazard har fångat Arthur i Minimojernas rike och har påbörjat...",
-                FilmUrl = "https://youtu.be/QWHsbDbLCJM"
+                Description = "Maltazard har fångat Arthur i Minimojernas rike och har påbörjat kampen för att ta över människornas värld.",
+                FilmUrl = "https://youtu.be/QWHsbDbLCJM",
+                ImageUrl = "/images/Arthur.png",
+                ImageLargeUrl = "/images/Arthur_large.png",
+                ImageSimilarUrl = "/images/Arthur_sim.png"
             }
         };
 

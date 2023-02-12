@@ -17,10 +17,16 @@ public class Film : IEntity
     public string? Title { get; set; }
     public DateTime Released { get; set; }
     public bool Free { get; set; }
-    [MaxLength(200)]
+    [MaxLength(500)]
     public string? Description { get; set; }
     [MaxLength(1024)]
     public string? FilmUrl { get; set; }
+    [MaxLength(255)]
+    public string? ImageUrl { get; set; }
+    [MaxLength(255)]
+    public string? ImageLargeUrl { get; set; }
+    [MaxLength(255)]
+    public string? ImageSimilarUrl { get; set; }
 
     public int DirectorId { get; set; }     
     //one director can have many films

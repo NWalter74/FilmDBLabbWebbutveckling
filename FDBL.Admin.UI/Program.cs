@@ -1,14 +1,25 @@
+using FDBL.Common.HttpClients;
+using FDBL.Common.Services;
+using Microsoft.AspNetCore.Authentication;
+
 namespace FDBL.Admin.UI;
 
 public class Program
 {
     public static void Main(string[] args)
     {
+
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
         builder.Services.AddRazorPages();
         builder.Services.AddServerSideBlazor();
+        //builder.Services.AddScoped<IStorageService, SessionStorageService>();
+        builder.Services.AddScoped<AuthenticationService>();
+        //builder.Services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<AuthenticationService>());
+        builder.Services.AddScoped<IAdminService, AdminService>();
+        //builder.Services.AddHttpClient<AuthenticationHttpClient>(client => client.BaseAddress = new Uri("https://localhost:5001/api/"));
+        builder.Services.AddHttpClient<MembershipHttpClient>(client => client.BaseAddress = new Uri("https://localhost:6001/api/"));
 
         var app = builder.Build();
 

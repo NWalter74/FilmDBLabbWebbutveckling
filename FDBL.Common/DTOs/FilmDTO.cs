@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace FDBL.Common.DTOs;
 
@@ -10,6 +11,22 @@ public class FilmDTO
     public bool Free { get; set; }
     public string? Description { get; set; }
     public string? FilmUrl { get; set; }
+    public string? ImageUrl { get; set; }
+    public string? ImageLargeUrl { get; set; }
+    public string? ImageSimilarUrl { get; set; }
+
+    //TODO:Only workaround! Check for better way if time left att the end. Check even for datetime format
+    public string ReleasedString
+    {
+        get
+        {
+            return Released.ToString();
+        }
+        set
+        {
+            Released = DateTime.Parse(value);
+        }
+    }
 
     public int DirectorId { get; set; }
     public virtual DirectorDTO? Director { get; set; }      //DirectorDTO instead of an Director entity
@@ -25,6 +42,7 @@ public class FilmDTO
         }
         catch
         {
+            //TODO: Why return null? 
             return null;
         }
     }
@@ -33,11 +51,14 @@ public class FilmDTO
 public class FilmCreateDTO
 {
     public string? Title { get; set; }
-    public DateTime Released { get; set; }
+    public DateTime Released { get; set; } = DateTime.Today;
     public int DirectorId { get; set; }
     public bool Free { get; set; }
     public string? Description { get; set; }
     public string? FilmUrl { get; set; }
+    public string? ImageUrl { get; set; }
+    public string? ImageLargeUrl { get; set; }
+    public string? ImageSimilarUrl { get; set; }
 }
 
 public class FilmEditDTO : FilmCreateDTO
