@@ -16,6 +16,7 @@ public class FilmDTO
     public string? ImageSimilarUrl { get; set; }
 
     //TODO:Only workaround! Check for better way if time left att the end. Check even for datetime format
+    //Customproperty
     public string ReleasedString
     {
         get

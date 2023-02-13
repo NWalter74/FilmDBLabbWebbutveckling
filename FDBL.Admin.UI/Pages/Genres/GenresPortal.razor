@@ -14,11 +14,11 @@
 
 @if (Navigation == PageType.Create)
 {
-    <ChangeFilm Page="@Navigation" OnChange="OnChange"></ChangeFilm>
+    <ChangeGenre Page="@Navigation" OnChange="OnChange"></ChangeGenre>
 }
 @if (Navigation == PageType.Delete || Navigation == PageType.Edit)
 {
-    <ChangeFilm Page="@Navigation" OnChange="OnChange" Model="Film"></ChangeFilm>
+    <ChangeGenre Page="@Navigation" OnChange="OnChange" Model="Genre"></ChangeGenre>
 }
 
 <div class="d-flex me-1">
@@ -27,21 +27,21 @@
     <button type="button" class="btn btn-outline-success rounded-0" @onclick="()=>ChangePageType(PageType.Create)">Create</button>
 </div>
 
-<FilmsIndex OnClick="OnClick" Model="Model"></FilmsIndex>
+<GenresIndex OnClick="OnClick" Model="Model"></GenresIndex>
 
 @code {
     string Navigation { get; set; } = PageType.Index;
 
-    List<FilmDTO> Model { get; set; } = new();
+    List<GenreDTO> Model { get; set; } = new();
 
     string Alert { get; set; } = "";
 
-    public FilmDTO Film { get; set; } = new();
+    public GenreDTO Genre { get; set; } = new();
 
     protected override async Task OnInitializedAsync()
     {
         Alert = "";
-        Model = await AdminService.GetAsync<FilmDTO>("films?freeOnly=false");
+        Model = await AdminService.GetAsync<GenreDTO>("genres");
     }
 
     void ChangePageType(string pageType) => Navigation = pageType;
@@ -51,7 +51,7 @@
     async Task OnClick(ClickModel model)
     {
         if (model.PageType.Equals(PageType.Edit) || model.PageType.Equals(PageType.Delete))
-            Film = await AdminService.SingleAsync<FilmDTO>($"films/{model.Id}") ?? new();
+            Genre = await AdminService.SingleAsync<GenreDTO>($"genres/{model.Id}") ?? new();
 
         ChangePageType(model.PageType);
     }
@@ -62,13 +62,13 @@
         {
             Alert = alert;
 
-            Model = await AdminService.GetAsync<FilmDTO>("films");
+            Model = await AdminService.GetAsync<GenreDTO>("genres");
 
             ChangePageType(PageType.Index);
         }
         catch
         {
-            Alert = "Couldn't create/edit/delete the film.";
+            Alert = "Couldn't create/edit/delete the genre.";
         }
     }
 }
