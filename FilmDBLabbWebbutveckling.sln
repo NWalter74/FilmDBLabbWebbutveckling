@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FDBL.Membership.API", "FDBL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FDBL.Membership.UI", "FDBL.Membership.UI\FDBL.Membership.UI.csproj", "{2B18C8AA-1C4A-4533-BB06-A316C1EC0A55}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FDBL.Users.Database", "FDBL.Users.Database\FDBL.Users.Database.csproj", "{E8FE0035-E471-4E78-AB4E-1C6B560D0BFF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FDBL.Users.API", "FDBL.Users.API\FDBL.Users.API.csproj", "{66CE59BA-0AD9-4C5F-AA23-7491C952FE29}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{2B18C8AA-1C4A-4533-BB06-A316C1EC0A55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B18C8AA-1C4A-4533-BB06-A316C1EC0A55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B18C8AA-1C4A-4533-BB06-A316C1EC0A55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8FE0035-E471-4E78-AB4E-1C6B560D0BFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8FE0035-E471-4E78-AB4E-1C6B560D0BFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8FE0035-E471-4E78-AB4E-1C6B560D0BFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8FE0035-E471-4E78-AB4E-1C6B560D0BFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66CE59BA-0AD9-4C5F-AA23-7491C952FE29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66CE59BA-0AD9-4C5F-AA23-7491C952FE29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66CE59BA-0AD9-4C5F-AA23-7491C952FE29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66CE59BA-0AD9-4C5F-AA23-7491C952FE29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
