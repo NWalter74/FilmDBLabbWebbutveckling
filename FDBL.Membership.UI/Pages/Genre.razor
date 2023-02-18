@@ -1,0 +1,201 @@
+﻿@page "/genre/{Id:int}"
+@using FDBL.Common.Services;
+@inject IMembershipService MembershipService
+
+<h2 class="text-center">Maximus Film Entertainment</h2>
+
+<MyNav />
+
+<a class="btn btn-primary rounded-10 mb-1 " href="/">
+    <i class="oi oi-arrow-left"></i><span class="vertical-align"> Back to Dashboard</span>
+</a>
+
+<div class="row">
+
+    <div class="d-flex flex-wrap justify-content-center">
+
+@*        Change kod for ID only*@
+        @switch (Id)
+        {
+            case (101):
+                <h3 class="text-center">Action Films</h3>
+
+                genres = FilmGenres.FindAll(item => item.GenreId == 101);
+                @if(genres.Count > 0)
+                {
+                    @foreach (var g in genres)
+                    {
+                        FilmDTO film = Films.Find(item => item.Id == g.FilmId);
+                        <GenreFilms Film="@film" />
+                    }
+                }else
+                {
+                    <div style="margin-top: 50px">
+                        <br />
+                        <h4>No films for this genre in the database!</h4>
+                    </div>
+                }
+                break;
+            case (102):
+                <h3>Sci-Fi Films</h3>
+
+                genres = FilmGenres.FindAll(item => item.GenreId == 102);
+                @if (genres.Count > 0)
+                {
+                    @foreach (var g in genres)
+                    {
+                        FilmDTO film = Films.Find(item => item.Id == g.FilmId);
+                        <GenreFilms Film="@film" />
+                    }
+                }
+                else
+                {
+                    <div style="margin-top: 50px">
+                        <br />
+                        <h4>No films for this genre in the database!</h4>
+                    </div>
+                }
+                break;
+            case (103):
+                <h3>Adventure Films</h3>
+
+                genres = FilmGenres.FindAll(item => item.GenreId == 103);
+                @if (genres.Count > 0)
+                {
+                    @foreach (var g in genres)
+                    {
+                        FilmDTO film = Films.Find(item => item.Id == g.FilmId);
+                        <GenreFilms Film="@film" />
+                    }
+                }
+                else
+                {
+                    <div style="margin-top: 50px">
+                        <br />
+                        <h4>No films for this genre in the database!</h4>
+                    </div>
+                }
+                break;
+            case (104):
+                <h3>Thriller Films</h3>
+
+                genres = FilmGenres.FindAll(item => item.GenreId == 104);
+                @if (genres.Count > 0)
+                {
+                    @foreach (var g in genres)
+                    {
+                        FilmDTO film = Films.Find(item => item.Id == g.FilmId);
+                        <GenreFilms Film="@film" />
+                    }
+                }
+                else
+                {
+                    <div style="margin-top: 50px">
+                        <br />
+                        <h4>No films for this genre in the database!</h4>
+                    </div>
+                }
+                break;
+            case (105):
+                <h3>Fantasy Films</h3>
+
+                genres = FilmGenres.FindAll(item => item.GenreId == 105);
+                @if (genres.Count > 0)
+                {
+                    @foreach (var g in genres)
+                    {
+                        FilmDTO film = Films.Find(item => item.Id == g.FilmId);
+                        <GenreFilms Film="@film" />
+                    }
+                }
+                else
+                {
+                    <div style="margin-top: 50px">
+                        <br />
+                        <h4>No films for this genre in the database!</h4>
+                    </div>
+                }
+                break;
+            case (106):
+                <h3>Comedy Films</h3>
+
+                genres = FilmGenres.FindAll(item => item.GenreId == 106);
+                @if(genres.Count > 0)
+                {
+                    @foreach (var g in genres)
+                    {
+                        FilmDTO film = Films.Find(item => item.Id == g.FilmId);
+                        <GenreFilms Film="@film" />
+                    }
+                }else
+                {
+                    <div style="margin-top: 50px">
+                        <br />
+                        <h4>No films for this genre in the database!</h4>
+                    </div>
+                }
+                break;
+            case (107):
+                <h3>Animation Films</h3>
+
+                genres = FilmGenres.FindAll(item => item.GenreId == 107);
+                @if (genres.Count > 0)
+                {
+                    @foreach (var g in genres)
+                    {
+                        FilmDTO film = Films.Find(item => item.Id == g.FilmId);
+                        <GenreFilms Film="@film" />
+                    }
+                }
+                else
+                {
+                    <div style="margin-top: 50px">
+                        <br />
+                        <h4>No films for this genre in the database!</h4>
+                    </div>
+                }
+
+                break;
+            case (108):
+                <h3>Family Films</h3>
+
+                genres = FilmGenres.FindAll(item => item.GenreId == 108);
+                @if (genres.Count > 0)
+                {
+                    @foreach (var g in genres)
+                    {
+                        FilmDTO film = Films.Find(item => item.Id == g.FilmId);
+                        <GenreFilms Film="@film" />
+                    }
+                }
+                else
+                {
+                    <div style="margin-top: 50px">
+                        <br />
+                        <h4>No films for this genre in the database!</h4>
+                    </div>
+                }
+                break;
+            default:
+                break;
+        }
+
+    </div>
+
+</div>
+
+
+@code {
+    [Parameter] public int? Id { get; set; }
+
+    public List<FilmDTO> Films { get; set; } = new();
+    public List<FilmGenreDTO> FilmGenres { get; set; } = new();
+
+    public List<FilmGenreDTO> genres { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Films = await MembershipService.GetFilmsAsync();
+        FilmGenres = await MembershipService.GetFilmGenresAsync();
+    }
+}

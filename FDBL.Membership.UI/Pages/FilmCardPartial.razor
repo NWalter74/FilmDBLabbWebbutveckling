@@ -1,0 +1,15 @@
+﻿<div style="max-width:200px;">
+    <div class="card rounded-10 m-2 border-0">
+        <img class="card-img-top rounded-10" src="@Film.ImageUrl">
+        <div class="card-body">
+            <h5 class="card-title">@Film.Title</h5>
+        </div>
+        <div>
+            <a class="btn btn-primary rounded-10" href="Film/@Film.Id">More info</a>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public FilmDTO Film { get; set; } = new FilmDTO();
+}

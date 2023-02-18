@@ -1,0 +1,14 @@
+﻿<div>
+    @if (Director != null)
+    {
+        <div class="align-content-start" style="width:260px;">
+            <div>
+                <h6>Director: @Director.Name</h6>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter] public DirectorDTO Director { get; set; } = new();
+}

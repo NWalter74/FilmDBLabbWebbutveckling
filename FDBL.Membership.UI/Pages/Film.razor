@@ -1,0 +1,44 @@
+﻿@page "/film/{Id:int}"
+@using FDBL.Common.Services;
+@inject IMembershipService MembershipService
+
+<h2 class="text-center">Maximus Film Entertainment</h2>
+
+<a class="btn btn-primary rounded-10 mb-1 " href="/">
+    <i class="oi oi-arrow-left"></i><span class="vertical-align"> Back to Dashboard</span>
+</a>
+
+<Marquee Film="@Filmm"/>
+
+<h3 class="text-center">Similar Films</h3>
+
+<div class="row">
+
+    <div class="d-flex flex-wrap justify-content-center">
+
+    @foreach (var simFi in SimilarFs)
+    {
+        if(Id == simFi.FilmId)
+        {
+            List<FilmDTO> film = Films.FindAll(item => item.Id == simFi.SimilarFilmId)!;
+            <SimilarFilms Film="@film" />
+        }
+    }
+    </div>
+</div>
+
+
+@code {
+    [Parameter] public int? Id { get; set; }
+
+    public FilmDTO Filmm { get; set; } = new FilmDTO();
+    public List<FilmDTO> Films { get; set; } = new();
+    public List<SimilarFilmDTO> SimilarFs { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Filmm = await MembershipService.GetFilmAsync(Id);
+        Films = await MembershipService.GetFilmsAsync();
+        SimilarFs = await MembershipService.GetSimilarFilmsAsync();
+    }
+}

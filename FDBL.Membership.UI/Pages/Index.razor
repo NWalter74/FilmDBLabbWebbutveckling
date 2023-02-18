@@ -1,0 +1,32 @@
+﻿@page "/"
+@using FDBL.Common.Services;
+
+@inject IMembershipService MembershipService
+
+<PageTitle>Maximus Film Entertainment</PageTitle>
+<h2 class="text-center">Maximus Film Entertainment</h2>
+<h3 class="text-center">Filmer</h3>
+
+
+<MyNav/>
+
+<Carousel />
+
+    <div class="row">
+        <div class="d-flex flex-wrap justify-content-center">
+
+            @foreach (var film in Films)
+            {
+                <FilmCardPartial Film="@film" />
+            }
+        </div>
+    </div>
+
+@code {
+    public List<FilmDTO> Films { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Films = await MembershipService.GetFilmsAsync();
+    }
+}

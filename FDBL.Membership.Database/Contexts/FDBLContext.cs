@@ -58,7 +58,7 @@ public class FDBLContext : DbContext
             new Director { Id = 1002, Name = "Jordan Vogt-Roberts" },
             new Director { Id = 1003, Name = "Brad Peyton" }
         };
-        //TODO: Ändra description som i VODContextExtensions och länkar till images
+
         var films = new List<Film>
         {
             new Film

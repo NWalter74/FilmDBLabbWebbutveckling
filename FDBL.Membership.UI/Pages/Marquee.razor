@@ -1,0 +1,32 @@
+﻿<div class="card flex-fill rounded-0">
+    <div class="d-flex flex-column">
+        <div class="marquee" style="background-image:url('@Film.ImageLargeUrl');" href:></div>
+        <hr class="m-0">
+
+        <h3 class="mt-2">@Film.Title</h3>
+        <h6>@Film.Description</h6>
+
+        <DirectorBio Director="@Film.Director" />
+
+        <h6>Released: @Film.Released.ToString().Substring(0,10)</h6>
+
+        @if(Film.Free == true)
+        {
+            <h6>Free to watch</h6>
+
+            <div>
+                <a class="btn btn-primary rounded-10" href="Play/@Film.Id">Play Film</a>
+            </div>
+        }else if(Film.Free == false)
+        {
+            <div>
+                <a class="btn btn-primary rounded-10 disabled" href="Play/@Film.Id">Sign in to see Film</a>
+            </div>
+        }
+
+    </div>
+ </div>
+@code {
+    [Parameter] public FilmDTO Film { get; set; } = new();
+
+}

@@ -1,0 +1,26 @@
+﻿<div style="max-width:200px;">
+    <div class="card rounded-10 m-2 border-0">
+        <img class="card-img-top rounded-10" src="@Film.ImageSimilarUrl">
+        <div class="card-body">
+            <h5 class="card-title">@Film.Title</h5>
+        </div>
+        <div>
+            @if (Film.Free == true)
+            {
+                <div>
+                    <a class="btn btn-primary rounded-10" href="Play/@Film.Id">Play Film</a>
+                </div>
+            }
+            else if (Film.Free == false)
+            {
+                <div>
+                    <a class="btn btn-primary rounded-10 disabled" href="Play/@Film.Id">Sign in to see Film</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public FilmDTO Film { get; set; } = new FilmDTO();
+}

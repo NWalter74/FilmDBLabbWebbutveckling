@@ -1,0 +1,30 @@
+﻿@foreach (var film in Film)
+{
+    <div style="max-width:200px;">
+        <div class="card rounded-10 m-2 border-0">
+            <img class="card-img-top rounded-10" src="@film.ImageSimilarUrl">
+            <div class="card-body">
+                <h5 class="card-title">@film.Title</h5>
+            </div>
+            <div>
+                @if (film.Free == true)
+                {
+                    <div>
+                        <a class="btn btn-primary rounded-10" href="Play/@film.Id">Play Film</a>
+                    </div>
+                }
+                else if (film.Free == false)
+                {
+                    <div>
+                        <a class="btn btn-primary rounded-10 disabled" href="Play/@film.Id">Sign in to see Film</a>
+                    </div>
+                }
+                   
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter] public List<FilmDTO> Film { get; set; } = new List<FilmDTO>();
+}

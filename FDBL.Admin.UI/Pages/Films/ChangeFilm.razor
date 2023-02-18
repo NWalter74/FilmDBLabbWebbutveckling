@@ -17,8 +17,8 @@
         </div>
         @if (!Page.Equals(PageType.Delete))
         {
-            <div class="mb-3">              @*ReleasedString is not the best way to do it. See FilmDTO for more details*@
-                <InputText id="release" class="form-control me-2" @bind-Value="Model.ReleasedString" placeholder="Released"></InputText>
+            <div class="mb-3">
+                <InputDate id="release" class="form-control me-2" @bind-Value="Model.Released" placeholder="Released"></InputDate>
                 <ValidationMessage For="@(() => Model.Released)" />
             </div>
             <div class="mb-3">
