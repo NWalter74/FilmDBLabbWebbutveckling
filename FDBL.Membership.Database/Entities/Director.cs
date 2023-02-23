@@ -12,5 +12,7 @@ public class Director : IEntity
     public string? Name { get; set; }
 
     //one to many - one director can have many films
+    /*You can use the navigation propertries to eager-load related data by including the tables when fetching the data, or to simplify LINQ queries by avoiding complex joins. 
+     *(Navigeringsproperty one-many)*/
     public virtual ICollection<Film>? Films { get; set; }   
 }

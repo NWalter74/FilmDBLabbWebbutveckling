@@ -1,5 +1,5 @@
 using AutoMapper;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;      // You need this and its accompnying EF libraries to build and maintain the membership database.
 using System.Text.Json.Serialization;
 
 namespace FDBL.Membership.API;
@@ -12,6 +12,8 @@ public class Program
 
         // Add services to the container.
         ConfigureServices();
+
+        //Automapper uses to convert between DTOs and Entities.
         ConfigureAutoMapper();
 
         // Configure the HTTP request pipeline.

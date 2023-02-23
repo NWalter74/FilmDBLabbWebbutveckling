@@ -1,5 +1,7 @@
 ﻿namespace FDBL.Common.DTOs;
 
+//In a DTO we only have data we want the user to see
+
 public class SimilarFilmDTO
 {
     public int FilmId { get; set; } = default; 
@@ -7,6 +9,4 @@ public class SimilarFilmDTO
 
     public FilmDTO? Film { get; set; }
     public FilmDTO? Similar { get; set; }
-
-    //public SimilarFilmDTO(int filmId, int similarFilmId) => (FilmId, SimilarFilmId) = (filmId, similarFilmId);
 }

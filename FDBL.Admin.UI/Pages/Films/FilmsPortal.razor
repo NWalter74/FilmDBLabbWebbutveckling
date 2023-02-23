@@ -1,9 +1,10 @@
-﻿@using FDBL.Common.DTOs;
-@inject IAdminService AdminService
+﻿@inject IAdminService AdminService
 
 @*checks that the Alert property isn’t null or empty
 *@@if (!string.IsNullOrEmpty(Alert))
 {
+    /*Add an alert using Bootstrap 5.2, which displays the message in the Alert property. To display property or variable values with razor in HTML,
+     *they must be prefixed with an @-sign. The X button’s @onclick event calls the CloseAlert method to hide the alert.*/
     <div class="d-flex">
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <strong>@Alert</strong>
@@ -21,19 +22,25 @@
     <ChangeFilm Page="@Navigation" OnChange="OnChange" Model="Film"></ChangeFilm>
 }
 
+@*Use flex and Bootstrap to display the buttons. The frst button is an anchor tag whose href targets the root page with just a slash (href="/"), the other two are
+ *<button> elements, which calls the ChangePageType method from their @onclick events with Index and Create property values in the static PageType class*@
 <div class="d-flex me-1">
     <a href="/" class="btn btn-outline-secondary rounded-0 me-1">Home</a>
     <button type="button" class="btn btn-outline-primary rounded-0 me-1" @onclick="()=>ChangePageType(PageType.Index)">Index</button>
     <button type="button" class="btn btn-outline-success rounded-0" @onclick="()=>ChangePageType(PageType.Create)">Create</button>
 </div>
 
+@*Add the FilmsIndex component below the <div> element and assign the OnClick method to its OnClick parameter and the Model property to its Model parameter.*@
 <FilmsIndex OnClick="OnClick" Model="Model"></FilmsIndex>
 
 @code {
+    /*Add a string property named Navigation for the which determines what components to load and assign it the value from the Index property in the static PageType class you add to the
+     *Classes folder earlier.*/
     string Navigation { get; set; } = PageType.Index;
 
     List<FilmDTO> Model { get; set; } = new();
 
+    //Add a string property named Alert for the alert message in the @code block and assign it an empty string.
     string Alert { get; set; } = "";
 
     public FilmDTO Film { get; set; } = new();
@@ -44,10 +51,15 @@
         Model = await AdminService.GetAsync<FilmDTO>("films?freeOnly=false");
     }
 
+    /*A method named ChangePageType with a string parameter named pageType, which changes the value of the Navigation property. This method is called from the buttons to
+     *determioen which components to load.*/
     void ChangePageType(string pageType) => Navigation = pageType;
 
+    /*A void method named CloseAlert, which assigns an empty string to the Alert property to clear any message and hide the alert when its X button is clicked. Assign an empty string to the 
+     *Alert property first in the OnInizializedAsync method to clear any message and hide the alert.*/
     void CloseAlert() => Alert = "";
 
+    /*A async Task method named OnClick with a ClickModel parameter named model. This method receives the callback form the event you added for the buttons in the FilmIndex component*/
     async Task OnClick(ClickModel model)
     {
         if (model.PageType.Equals(PageType.Edit) || model.PageType.Equals(PageType.Delete))
@@ -56,14 +68,19 @@
         ChangePageType(model.PageType);
     }
 
+    /*async Task OnChange event method you referenced in and invoked from the OnFormSubmit method in the ChangeFilm component in the previous exercise. It should have a string parameter named
+     *alert, which receives the message you specified when invoking the method*/
     async Task OnChange(string alert)
     {
         try
         {
+            //assign the message from the alert parameter to the Alert property to display the error message from the invokation if something went wrong in the form.
             Alert = alert;
 
+            /*Reload the films in the Model property by calling the GetAsync<FilmDTO>("films") method to refresh the table content in the FilmsIndex component.*/
             Model = await AdminService.GetAsync<FilmDTO>("films");
 
+            //Hide the ChangeFilm form by calling the ChangePageType method with PageType.Index.
             ChangePageType(PageType.Index);
         }
         catch

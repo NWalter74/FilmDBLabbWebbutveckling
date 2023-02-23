@@ -1,7 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Web;
+﻿namespace FDBL.Common.DTOs;
 
-namespace FDBL.Common.DTOs;
+//In a DTO we only have data we want the user to see
 
 public class FilmDTO
 {
@@ -21,19 +20,6 @@ public class FilmDTO
     public virtual List<GenreDTO>? Genres { get; set; } = new();
     public virtual List<SimilarFilmDTO>? SimilarFilms { get; set; } = new();
 
-    //TODO:Ask Koosha: Why did we this here? Why video? 
-    public string GetVideoId()
-    {
-        try
-        {
-            return HttpUtility.ParseQueryString(new Uri(FilmUrl).Query).Get("v");
-        }
-        catch
-        {
-            //TODO: Why return null? 
-            return null;
-        }
-    }
 }
 
 public class FilmCreateDTO

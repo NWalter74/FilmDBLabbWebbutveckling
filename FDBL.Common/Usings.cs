@@ -5,4 +5,7 @@ global using System.Security.Claims;
 global using System.ComponentModel.DataAnnotations;
 global using FDBL.Common.Models;
 global using System.ComponentModel;
+global using FDBL.Common.Classes;
+global using System.Text;
+
 

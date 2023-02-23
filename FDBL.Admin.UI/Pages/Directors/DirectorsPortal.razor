@@ -1,8 +1,6 @@
-﻿@using FDBL.Common.DTOs;
-@inject IAdminService AdminService
+﻿@inject IAdminService AdminService
 
-@*checks that the Alert property isn’t null or empty
-*@@if (!string.IsNullOrEmpty(Alert))
+@if (!string.IsNullOrEmpty(Alert))
 {
     <div class="d-flex">
         <div class="alert alert-danger alert-dismissible fade show" role="alert">

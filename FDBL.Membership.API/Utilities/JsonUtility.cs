@@ -1,7 +1,4 @@
-﻿using System.Text.Json.Serialization;
-using System.Text.Json;
-
-namespace FDBL.Membership.API.Utilites;
+﻿namespace FDBL.Membership.API.Utilites;
 
 public static class JsonUtility
 {

@@ -1,20 +1,10 @@
 ﻿namespace FDBL.Common.DTOs;
 
+//In a DTO we only have data we want the user to see
+
 public class GenreDTO
 {
     public int Id { get; set; }
     public string? Name { get; set; }
 
-    //public List<SimilarFilmDTO>? SimilarFilms { get; set; }
 }
-
-//public class GenreCreateDTO
-//{
-//    public string? Name { get; set; }
-//}
-
-//public class GenreEditDTO : GenreCreateDTO
-//{
-//    public int Id { get; set; }
-//}
-

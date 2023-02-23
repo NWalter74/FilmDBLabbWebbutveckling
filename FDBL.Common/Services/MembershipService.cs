@@ -1,6 +1,4 @@
-﻿using FDBL.Common.DTOs;
-
-namespace FDBL.Common.Services;
+﻿namespace FDBL.Common.Services;
 
 public class MembershipService : IMembershipService
 {
@@ -17,17 +15,25 @@ public class MembershipService : IMembershipService
         {
             bool freeOnly = false;
 
+            /*Await a call to the _http.Clinet.GetAsync method in the MembershipHttpClient with the film URI and its freeOnly parameter ($"films?freeOnly={freeOnly}") to target the API’s 
+             *FilmsController controller. Store the result in an HttpResponseMessage variable named response.
+             *Call the EnsureSuccessStatusCode method on the response object to ensure the call was successful, else it throws an exception handled by the catch*/
             using HttpResponseMessage response = await _http.Client.GetAsync($"films?freeOnly={freeOnly}");
             response.EnsureSuccessStatusCode();
 
+            /*Call the JsonSerializer.Deserialze method and specify List<FilmDTO> as its generic type you want to transform the JSON data returned by the API into. Pass in the response content 
+             *as a stream to the method and store the result in a variable named result. Because JSON uses camelcase and C# Pascal case, you must specify that property names are case 
+             *insensitive for the desrialzer to match the property names.*/
             var result = JsonSerializer.Deserialize<List<FilmDTO>>(await response.Content.ReadAsStreamAsync(),
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
+            //Return an empty List<FilmDTO> if the result variable is null, otherwise return result.
             return result ?? new List<FilmDTO>();
 
         }
         catch (Exception)
         {
+            //This avoids null check logic in the dashboard’s Razor page as the method always returns list
             return new List<FilmDTO>();
         }
     }

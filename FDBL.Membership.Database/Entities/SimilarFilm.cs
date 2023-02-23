@@ -2,8 +2,8 @@
 
 namespace FDBL.Membership.Database.Entities;
 
-public class SimilarFilm //: IReferenceEntity
-{
+public class SimilarFilm
+{ 
     public int FilmId { get; set; }         
     public int SimilarFilmId { get; set; }  
 

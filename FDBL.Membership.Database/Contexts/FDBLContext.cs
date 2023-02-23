@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿namespace FDBL.Membership.Database.Contexts;
 
-namespace FDBL.Membership.Database.Contexts;
-
+//Inherit the DBContext class to gain access to EF-specific methods.
 public class FDBLContext : DbContext
 {
+    //The entities as DbSet properties and name them with the plural form of the entity class names.
     //Här definieras namnen för tabellerna i databasen och "tilldelas" rätt klass i VS
     public virtual DbSet<Director> Directors => Set<Director>();
     public virtual DbSet<Film> Films => Set<Film>();
@@ -11,10 +11,14 @@ public class FDBLContext : DbContext
     public virtual DbSet<Genre> Genres => Set<Genre>();
     public virtual DbSet<SimilarFilm> SimilarFilms => Set<SimilarFilm>();
 
+    //EF requires a constructor with a DbContextOptions<VODContext> parameter named options even though you won’t use it.Pass the options parameter to the DbContext
+    //base class with the base keyword.
     public FDBLContext(DbContextOptions<FDBLContext> options) : base(options)
     {
     }
 
+    //Override the OnModelCreating method and use the ModelBuilder to restrict the cascading delete behavior of the tables.You fetch each relationship with reflection using their foreign
+    //key and alter their DeleteBehavior property to Restrict.
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder.Entity<FilmGenre>().HasKey(ci => new { ci.FilmId, ci.GenreId });
@@ -26,9 +30,7 @@ public class FDBLContext : DbContext
         builder.Entity<Film>(entity =>
         {
             entity
-                // For each film in the Film Entity,
-                // reference relatred films in the SimilarFilms entity
-                // with the ICollection<SimilarFilms>
+                // For each film in the Film Entity, reference relatred films in the SimilarFilms entity with the ICollection<SimilarFilms>
                 .HasMany(d => d.SimilarFilms)
                 .WithOne(p => p.Film)
                 .HasForeignKey(d => d.FilmId)       //FilmId from tabel SimilarFilms
@@ -36,8 +38,7 @@ public class FDBLContext : DbContext
                 // Neded when seeding similar films data.
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
-            // Configure a many-to-many realtionship between genres
-            // and films using the FilmGenre connection entity.
+            // Configure a many-to-many realtionship between genres and films using the FilmGenre connection entity.
             entity.HasMany(d => d.Genres)
                   .WithMany(p => p.Films)
                   .UsingEntity<FilmGenre>()

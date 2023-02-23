@@ -1,8 +1,13 @@
 ﻿@inject IAdminService AdminService
 
+@*<EditForm> element to capture data for a film from the user or the application, depending on the flow (create, edit, or delete.*@
+
 <div class="d-xl-flex justify-content-center">
+    @*an <EditForm> that uses the Model property as its model. async Task method named OnFormSubmit  add it to the form’s OnValidSubmit event.*@
+
     <EditForm Model="@Model" OnValidSubmit="@OnFormSubmit" class="mb-5 border border-1 border-secondary p-2 w-25">
         <DataAnnotationsValidator />
+        @*displaying the value of the Page property and the text Film, which displayes the text Create Film, Edit Film, Delete Film depending on the flow*@
         <h4>@Page Film</h4>
         <div class="mb-3">
             @if (Page.Equals(PageType.Delete))
@@ -62,12 +67,17 @@
 </div>
 
 @code {
+    /* a public FilmDTO [parameter] property named Model for the film data passed-in from the FilmPortal component*/
     [Parameter] public FilmDTO Model { get; set; } = new();
 
+    /* a public string [parameter] property named Page and assign it an empty string, which keeps track of the selected flow (create, edit, delete) based on a PageType property passedin from the FilmPortal component.*/
     [Parameter] public string Page { get; set; } = string.Empty;
 
+    /* a public EventCallback<string> [parameter] property named OnChange, which connects to a method in FilmPortal component later, like done for the buttons in the FilmIndex component.*/
     [Parameter] public EventCallback<string> OnChange { get; set; }
 
+    /*a List<DirectorDTO> property named Directors, which you load with all directors from the overridden OnInitializedAsync method with the AdminService and use it to display
+     *the directors as <option> elements in the <InputSelect> element.*/
     List<DirectorDTO> Directors { get; set; } = new();
 
     protected override async Task OnInitializedAsync()
@@ -77,8 +87,11 @@
 
     private async Task OnFormSubmit()
     {
+        /*a try/catch, where the catch invokes the OnChange event to call the FilmPortal’s couterpart method with an error message, which is displayed in the alert in the FilmPortal component.*/
         try
         {
+            /*Use if logic with the Page property an the static PageType class’ properties to call the CreateAsync<TDto>("films", Model), EditAsync<TDto>($"films/{Model.Id}", 
+             *Model), or DeleteAsync<TDto>($"films/{Model.Id}") methods in the AdminService to persist the data in the database.*/
             if (Page.Equals(PageType.Create))
                 await AdminService.CreateAsync<FilmDTO>("films", Model);
             else if (Page.Equals(PageType.Edit))
@@ -86,6 +99,7 @@
             else if (Page.Equals(PageType.Delete))
                 await AdminService.DeleteAsync<FilmDTO>($"films/{Model.Id}");
 
+            //to call the FilmPortal’s couterpart method
             await OnChange.InvokeAsync("");
         }
         catch

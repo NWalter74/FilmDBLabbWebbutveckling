@@ -1,6 +1,4 @@
-﻿using FDBL.Membership.API.Utilites;
-
-namespace FDBL.Membership.API.Controllers;
+﻿namespace FDBL.Membership.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

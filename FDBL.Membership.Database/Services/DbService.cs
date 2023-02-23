@@ -2,20 +2,24 @@
 
 public class DbService : IDbService
 {
+    // To give the service access to the database
     private readonly FDBLContext _db;
+
+    // To easily convert between DTO and Entity
     private readonly IMapper _mapper;
 
+    //Inject the FDBLContext and AutoMapper (IMapper)
     public DbService(FDBLContext db, IMapper mapper)
     {
         _db = db;
         _mapper = mapper;
     }
+
+    /// The TEntity type is limited to only classes because an entity must be a class and the IEntity interface defining the Id property.
     public async Task<List<TDto>> GetAsync<TEntity, TDto>() where TEntity : class where TDto : class
     {
         var entities = await _db.Set<TEntity>().ToListAsync();
         return _mapper.Map<List<TDto>>(entities);
-
-
     }
 
     public async Task<List<TDto>> GetAsync<TEntity, TDto>(
@@ -26,7 +30,6 @@ public class DbService : IDbService
         var entities = await _db.Set<TEntity>().Where(expression).ToListAsync();
         return _mapper.Map<List<TDto>>(entities);
     }
-
 
 
     private async Task<TEntity?> SingleAsync<TEntity>(Expression<Func<TEntity, bool>> expression) where TEntity : class, IEntity =>
@@ -68,15 +71,20 @@ public class DbService : IDbService
 
         return true;
     }
+
+    //  Includes related table data through eager loading by specifying the generic entity type when calling it.
     public void Include<TEntity>() where TEntity : class
     {
+        //Use reflection to find the names of the navigation properties in the TEntity type.
         var propertyNames = _db.Model.FindEntityType(typeof(TEntity))?.GetNavigations().Select(e => e.Name);
 
+        //Return if the result is null, i.e. the entity has no navigation properties.
         if (propertyNames is null)
         {
             return;
         }
 
+        //Iterate over the property names and use EF to fetch the entity for IEntity and call the Include method with the name and load the related entity by calling the Load method.
         foreach (var name in propertyNames)
             _db.Set<TEntity>().Include(name).Load();
     }

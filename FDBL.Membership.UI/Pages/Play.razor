@@ -13,8 +13,7 @@
 
     @if (Film.FilmUrl != null)
     {
-        @*The video player is an <iframe> with its src (source) attribute set to the value of the video’s FilmUrl
-        property. The <iframe> is placed inside a <div> to style it to specification. Only display the player if the
+        @*The video player is an <iframe> with its src (source) attribute set to the value of the video’s FilmUrl property. The <iframe> is placed inside a <div> to style it to specification. Only display the player if the
         video’s Url property is not null*@
         <div class="video-player">
             <iframe width="420" height="315"  src="@Film.FilmUrl" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; encrypted-media" allowfullscreen></iframe>

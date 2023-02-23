@@ -12,12 +12,14 @@
         </tr>
     </thead>
     <tbody>
+        @*Iterate over the Model property to display the film table rows.*@
         @foreach (var item in Model)
         {
             <tr>
                 <td>@item.Id</td>
                 <td>@item.Title</td>
-                <td>@item.Released</td>
+                <td>@item.Released.ToString().Substring(0,10)</td>
+                @*Use a ternary expression to display the text Free for the film in the Free column if the film’s Free property is true.*@
                 <td>@(item.Free ? "Free" : "Paid")</td>
                 <td>@item.Director.Name</td>
                 @*Use the Truncate method to truncate the descriptions.*@
@@ -25,6 +27,8 @@
                 <td>@item.FilmUrl</td>
                 <td>
                     <div class="d-flex me-1 justify-content-end">
+                        @*The button’s @onclick events invokes (triggers) the OnClick event and sends it an instance of the ClickModel record with Edit or Delete for its PageType property and the film id for
+                         *the Id property.*@
                         <button class="btn btn-outline-primary rounded-0 me-1" @onclick="@(() => OnClick.InvokeAsync(new ClickModel(PageType.Edit, item.Id)))">Edit</button>
                         <button class="btn btn-outline-danger rounded-0" @onclick="@(() => OnClick.InvokeAsync(new ClickModel(PageType.Delete, item.Id)))">Delete</button>
                     </div>
@@ -35,6 +39,10 @@
 </table>
 
 @code {
+    //a property of type List<FilmDTO> named Model decorated with the [Parameter] attribute and assign it an empty list
     [Parameter] public List<FilmDTO> Model { get; set; } = new();
+
+    //a proeprty of type EventCallback<ClickModel> named OnClick decorated with the [Parameter] attribute. This property alert the FilmPortal when a button is clicked and
+    //sends its recediving method ClickModel data
     [Parameter] public EventCallback<ClickModel> OnClick { get; set; }
 }

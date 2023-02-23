@@ -1,15 +1,10 @@
-﻿using FDBL.Common.Classes;
-using System.Text;
-using FDBL.Common.Models;
-
-namespace FDBL.Common.HttpClients;
+﻿namespace FDBL.Common.HttpClients;
 
 public class UserHttpClient
 {
     public HttpClient Client { get; }
 
-    //Add a inject an instance of the HttpClient class into constructor and store it in class-level 
-    //variable named Client
+    //inject an instance of the HttpClient class into constructor and store it in class-level variable named Client
     public UserHttpClient(HttpClient httpClient)
     {
         Client = httpClient;
@@ -32,6 +27,7 @@ public class UserHttpClient
                     Encoding.UTF8,
                     "application/json");
 
+            //TODO: Here is something wrong because I get an error if I try to register new customer
             using HttpResponseMessage response = await Client.PostAsync("api/users/register", jsonContent);
             if (!response.IsSuccessStatusCode) throw new Exception(response.ReasonPhrase);
         }
