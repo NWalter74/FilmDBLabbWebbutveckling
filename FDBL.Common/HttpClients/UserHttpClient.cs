@@ -27,8 +27,7 @@ public class UserHttpClient
                     Encoding.UTF8,
                     "application/json");
 
-            //TODO: Here is something wrong because I get an error if I try to register new customer
-            using HttpResponseMessage response = await Client.PostAsync("api/users/register", jsonContent);
+            using HttpResponseMessage response = await Client.PostAsync("users/register", jsonContent);
             if (!response.IsSuccessStatusCode) throw new Exception(response.ReasonPhrase);
         }
         catch

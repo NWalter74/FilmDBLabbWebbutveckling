@@ -1,6 +1,6 @@
 ﻿namespace FDBL.Users.API.Controllers;
 
-[Route("api/[controller]")]
+//[Route("api/[controller]")]
 [ApiController]
 public class UsersController : ControllerBase
 {
@@ -12,14 +12,13 @@ public class UsersController : ControllerBase
     {
         try
         {
-            if (!ModelState.IsValid) return Results.BadRequest();
+            if (!ModelState.IsValid) return Results.BadRequest(ModelState);
 
             var existingUser = await _userManager.FindByEmailAsync(email);
             if (existingUser is not null) return Results.BadRequest();
 
             FDBLUser newUser = new()
             {
-                Id = Guid.NewGuid().ToString(),
                 Email = email,
                 EmailConfirmed = true,
                 UserName = email
@@ -87,7 +86,13 @@ public class UsersController : ControllerBase
         {
             var result = await AddUser(registerUserDTO.Email, registerUserDTO.Password);
 
-            if (result.Equals(Results.BadRequest())) return Results.BadRequest();
+            if (result.Equals(Results.BadRequest(new
+            {
+                message = "Email must be at least 6 long. Password musst be att least 6 long and have at least 1 uppercase letter and one special character."
+            }))) return Results.BadRequest(new
+            {
+                message = "Email must be at least 6 long. Password musst be att least 6 long and have at least 1 uppercase letter and one special character."
+            });
 
             result = await AddRoles(registerUserDTO.Email, registerUserDTO.Roles);
 
@@ -95,7 +100,10 @@ public class UsersController : ControllerBase
         }
         catch { }
 
-        return Results.BadRequest();
+        return Results.BadRequest(new
+        {
+            message = "Email must be at least 6 long. Password musst be att least 6 long and have at least 1 uppercase letter and one special character."
+        });
     }
 
     [Route("api/users/paid")]
