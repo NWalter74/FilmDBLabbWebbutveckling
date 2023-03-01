@@ -3,17 +3,24 @@
 public class MembershipService : IMembershipService
 {
     protected readonly MembershipHttpClient _http;
+    private readonly IStorageService _storage;
+    protected readonly ILocalStorageService _localStorage;
 
-    public MembershipService(MembershipHttpClient httpClient)
+    public MembershipService(MembershipHttpClient httpClient, IStorageService storage, ILocalStorageService localStorage)
     {
         _http = httpClient;
+        _storage = storage;
+        _localStorage = localStorage;
     }
 
     public async Task<List<FilmDTO>> GetFilmsAsync()
     {
         try
         {
-            bool freeOnly = false;
+            var token = await _storage.GetAsync(AuthConstants.TokenName);
+            bool freeOnly = JwtParser.ParseIsNotInRoleFromPayload(token, UserRole.Customer);
+
+            _http.AddBearerToken(token);
 
             /*Await a call to the _http.Clinet.GetAsync method in the MembershipHttpClient with the film URI and its freeOnly parameter ($"films?freeOnly={freeOnly}") to target the API’s 
              *FilmsController controller. Store the result in an HttpResponseMessage variable named response.

@@ -5,20 +5,29 @@
 <h2 class="text-center">Maximus Film Entertainment</h2>
 <h3 class="text-center">Filmer</h3>
 
+<AuthorizeView Policy="@UserPolicy.Registered">
+    <NotAuthorized>
+        <h4 class="text-center">@context.User.FindFirst("sub")?.Value register for free or paid films.</h4>
+    </NotAuthorized>
+    <Authorized>
+        <h4 class="text-center">Welcome @context.User.FindFirst("sub")?.Value.</h4>
 
-<MyNav/>
+        <MyNav/>
 
-<Carousel />
+        <Carousel />
 
-    <div class="row">
-        <div class="d-flex flex-wrap justify-content-center">
+        <div class="row">
+            <div class="d-flex flex-wrap justify-content-center">
 
-            @foreach (var film in Films)
-            {
-                <FilmCardPartial Film="@film" />
-            }
+                @foreach (var film in Films)
+                {
+                    <FilmCardPartial Film="@film" />
+                }
+            </div>
         </div>
-    </div>
+
+    </Authorized>
+</AuthorizeView>
 
 @code {
     public List<FilmDTO> Films { get; set; } = new();
